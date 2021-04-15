@@ -1,0 +1,128 @@
+
+#map {
+    height: 100%;
+    max-height: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+.container{
+    height: 100%;
+    min-height: 100%;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+nav{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+#map-iframe{
+    width: 100%;
+    min-height: 800px;
+}
+.iframe-button{
+    cursor: pointer;
+    color: white;
+    padding: 20px;
+    background-color: brown;
+    border: 1px brown solid;
+    margin: 20px auto;
+    display: inline-block;
+    border-radius: 10px;
+    opacity: 1;
+    transition: background-color .5s ease-in-out, color .5s ease-in-out, border .5s ease-in-out, opacity .5s ease-in-out;
+}
+.iframe-button:hover{
+    color: black;
+    background-color: white;
+    border: 1px black solid;
+}
+ul.nav{
+    display: flex;
+    list-style: none;
+}
+li.nav-item{
+    margin-right: 6px;
+}
+li.nav-item a{
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color .5s ease-in-out, background-color .5s ease-in-out;
+}
+li.nav-item a:hover{
+    color: white;
+    background-color: brown;
+}
+li.nav-item a.active{
+    color: white;
+    background-color: black;
+}
+
+#floating-panel{
+    width: 60%;
+    padding: 20px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: aquamarine;
+}
+p.schedule-appointment span {
+    text-decoration: underline;
+    color: rgb(222, 151, 64);
+    text-transform: none;
+    cursor: pointer;
+}
+.hidden{
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+#button-hide{
+    position: absolute;
+    right: 19px;
+    top: 0;
+}
+#iframe-container.hidden{
+    opacity: 0;
+}
+#iframe-container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity .8s ease-in-out;
+}
+#iframe-container-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-color: rgba(0,0,0, .6);
+}
+#iframe-popup{
+
+    position: relative;
+    min-height: 800px;
+    max-height: 1300px;
+    width: 100%;
+    max-width: 80%;
+
+
+}
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
