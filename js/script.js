@@ -12,7 +12,7 @@ const poiAll = [
 
 let poiObj = [];
 
-for (var k = 0; k < poiAll.length; k++) {
+for (let k = 0; k < poiAll.length; k++) {
   poiObj.push(
     {
       featureType: poiAll[k],
@@ -31,10 +31,10 @@ function eventShowForm () {
 }
 
 function initMap () {
-  var damonMapType = new google.maps.StyledMapType(poiObj, {
+  let damonMapType = new google.maps.StyledMapType(poiObj, {
     name: 'Damon Style'
   });
-  var damonMapTypeId = 'damon_style';
+  let damonMapTypeId = 'damon_style';
   const mapDiv = document.getElementById("map");
 
 
@@ -51,11 +51,6 @@ function initMap () {
     map.zoom = 16;
     geocodeAddress(geocoder, map);
   });
-
-
-  // markerList.e
-
-
 }
 
 function geocodeAddress (geocoder, resultsMap) {
@@ -135,9 +130,7 @@ function setMarkers (map) {
     },
   };
   let lastInfoWindow = null;
-
   for (let i = 0; i < features.length; i++) {
-
     const damonStyle = '<style>' +
       '.locator-map-popup{text-align: left}' +
       '</style>';
@@ -167,7 +160,6 @@ function setMarkers (map) {
     const infowindow = new google.maps.InfoWindow({
       content: windowString,
     });
-    // infoWindows.push(infoWindow);
 
     setTimeout(() => {
         const marker = new google.maps.Marker({
@@ -179,8 +171,6 @@ function setMarkers (map) {
         infowindow.open(map, marker);
         infowindow.close(map, marker);
         marker.addListener("click", (function (marker, content, infoWindow) {
-
-
           return function () {
             closeLastOpenedInfoWindow(lastInfoWindow);
             infowindow.open(map, marker);
@@ -188,32 +178,30 @@ function setMarkers (map) {
             const markerList = document.getElementsByClassName('form-event-button');
             console.log(markerList);
             for (let q = 0; q < markerList.length; q++) {
-              // markerList[q].addEventListener('click', (marker)=>{
-              //   marker.close(map, marker);
-              //   eventShowForm();
-              // })
               document.querySelector('.form-event-button').addEventListener('click', () => {
                 eventShowForm()
                 infowindow.close(map, marker);
               })
             }
           }
-        })(marker, windowString, infowindow ));
+        })(marker, windowString, infowindow));
 
       },
-      (i+1) * 500);
+      (i + 1) * 500);
   }
 
 }
-function closeLastOpenedInfoWindow(infoWindow){
-  if (infoWindow){
+
+function closeLastOpenedInfoWindow (infoWindow) {
+  if (infoWindow) {
     infoWindow.close();
   }
 }
+
 function createMarkerInfo (markerItem) {
-  var wrapper = document.createElement('div');
-  var drLink = document.createElement('p');
-  var spanLink = document.createElement('span');
+  let wrapper = document.createElement('div');
+  let drLink = document.createElement('p');
+  let spanLink = document.createElement('span');
   spanLink.innerHTML = 'Schedule Appointment';
   spanLink.classList.add('form-event-button');
   drLink.innerHTML = spanLink;
