@@ -56,7 +56,6 @@ function initMap () {
   // markerList.e
 
 
-
 }
 
 function geocodeAddress (geocoder, resultsMap) {
@@ -135,6 +134,7 @@ function setMarkers (map) {
       },
     },
   };
+  let lastInfoWindow = null;
 
   for (let i = 0; i < features.length; i++) {
 
@@ -161,12 +161,13 @@ function setMarkers (map) {
       ')" class="form-event-button" title="Schedule Appointment" data-location-id="1000000783" data-doctor-name="' +
       features[i].drName +
       '">Schedule Appointment</span></p>' +
-      '<a href="https://locator.damonbraces.com/app/?o=1000000063" class="card-link" target="_blank" rel="noopener">' +features[i].drSite + '</a> </div> </div>';
+      '<a href="https://locator.damonbraces.com/app/?o=1000000063" class="card-link" target="_blank" rel="noopener">' + features[i].drSite + '</a> </div> </div>';
 
     const windowString = damonStyle + damonString;
     const infowindow = new google.maps.InfoWindow({
       content: windowString,
     });
+    // infoWindows.push(infoWindow);
 
     setTimeout(() => {
         const marker = new google.maps.Marker({
@@ -177,21 +178,38 @@ function setMarkers (map) {
         });
         infowindow.open(map, marker);
         infowindow.close(map, marker);
-        marker.addListener("click", () => {
-          infowindow.open(map, marker);
-          const markerList = document.getElementsByClassName('form-event-button');
-          console.log(markerList);
-          for(let q = 0; q < markerList.length; q++){
-            markerList[q].addEventListener('click', eventShowForm)
-          document.querySelector('.form-event-button').addEventListener('click', eventShowForm)
+        marker.addListener("click", (function (marker, content, infoWindow) {
+
+
+          return function () {
+            closeLastOpenedInfoWindow(lastInfoWindow);
+            infowindow.open(map, marker);
+            lastInfoWindow = infoWindow;
+            const markerList = document.getElementsByClassName('form-event-button');
+            console.log(markerList);
+            for (let q = 0; q < markerList.length; q++) {
+              // markerList[q].addEventListener('click', (marker)=>{
+              //   marker.close(map, marker);
+              //   eventShowForm();
+              // })
+              document.querySelector('.form-event-button').addEventListener('click', () => {
+                eventShowForm()
+                infowindow.close(map, marker);
+              })
+            }
           }
-        });
+        })(marker, windowString, infowindow ));
 
       },
-      i * 500);
+      (i+1) * 500);
+  }
+
+}
+function closeLastOpenedInfoWindow(infoWindow){
+  if (infoWindow){
+    infoWindow.close();
   }
 }
-
 function createMarkerInfo (markerItem) {
   var wrapper = document.createElement('div');
   var drLink = document.createElement('p');
@@ -212,7 +230,7 @@ function showForm () {
 }
 
 (function ($) {
-  $(".form-event-button").on('click',function () {
+  $(".form-event-button").on('click', function () {
     // $("#map-iframe").attr("src",
     // "https://locator.damonbraces.com/iframe/?s=&ver=20210111001");
     $(this).addClass('hidden');
