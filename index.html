@@ -5,7 +5,7 @@
     <title>GMap Custom Example</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js" class="optanon-category-C0004"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
 
 </head>
@@ -14,8 +14,9 @@
     <nav>
         <ul class="nav">
             <li class="nav-item"><a href="index.html" class="active">Home</a></li>
-            <li class="nav-item" >
-                <a href="with-iframe.html">Iframe</a></li>
+<!--            <li class="nav-item" >-->
+<!--                <a href="with-iframe.html">Iframe</a>-->
+<!--            </li>-->
         </ul>
     </nav>
     <div id="floating-panel">
@@ -23,14 +24,21 @@
         <input id="submit" type="button" value="Search" />
     </div>
 
-
     <div id="map"></div>
+
 </div>
+
+<div id="iframe-container" class="hidden">
+    <div id="iframe-container-background"></div>
+    <div id="button-hide" class="iframe-button">Close Popup</div>
+    <div id="iframe-popup">
+        <section id="popup-form">
+            <div id="hubspot-form-5806864"></div>
+        </section>
+    </div>
+</div>
+
 <script src="js/script.js"></script>
-
-<script src="js/locator.min.js" async></script>
-
-<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlltt2ShGGD6ZSbkokIzVeZfpmXpOv4lY&callback=initMap&libraries=&v=weekly" async></script>
 
 
